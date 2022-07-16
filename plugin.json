@@ -1,0 +1,27 @@
+{
+  "slug": "ChowDSP-secrets",
+  "name": "ChowDSP Secrets",
+  "version": "2.0.0",
+  "license": "GPL-3.0-or-later",
+  "brand": "chowdsp",
+  "author": "CHowdhury DSP\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[C\u001b[h\u001b[F\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C",
+  "authorEmail": "chowdsp@gmail.com",
+  "authorUrl": "https://chowdsp.com",
+  "pluginUrl": "",
+  "manualUrl": "",
+  "sourceUrl": "",
+  "donateUrl": "",
+  "changelogUrl": "",
+  "modules": [
+    {
+      "slug": "ChowBell",
+      "name": "ChowBell",
+      "description": "808-style Cowbell",
+      "manualUrl": "",
+      "tags": [
+        "Drum",
+        "Physical modeling"
+      ]
+    }
+  ]
+}

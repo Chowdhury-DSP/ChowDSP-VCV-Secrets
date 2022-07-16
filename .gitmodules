@@ -1,0 +1,6 @@
+[submodule "libs/chowdsp_utils"]
+	path = libs/chowdsp_utils
+	url = https://github.com/Chowdhury-DSP/chowdsp_utils
+[submodule "libs/chowdsp_wdf"]
+	path = libs/chowdsp_wdf
+	url = https://github.com/Chowdhury-DSP/chowdsp_wdf
