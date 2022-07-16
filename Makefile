@@ -1,7 +1,5 @@
 # If RACK_DIR is not defined when calling the Makefile, default to two directories above
-# RACK_DIR ?= ../..
-RACK_DIR=/c/SDKs/Rack-SDK
-RACK_USER_DIR=/c/Users/jatin/OneDrive/Documents/Rack2
+RACK_DIR ?= ../..
 
 include libs/libs.mk
 
