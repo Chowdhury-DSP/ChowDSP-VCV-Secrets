@@ -4,3 +4,6 @@
 [submodule "libs/chowdsp_wdf"]
 	path = libs/chowdsp_wdf
 	url = https://github.com/Chowdhury-DSP/chowdsp_wdf
+[submodule "libs/RTNeural"]
+	path = libs/RTNeural
+	url = https://github.com/jatinchowdhury18/RTNeural

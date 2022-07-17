@@ -22,6 +22,16 @@
         "Drum",
         "Physical modeling"
       ]
+    },
+    {
+      "slug": "MetalFace",
+      "name": "MetalFace",
+      "description": "Expensive Metal Guitar Distortion",
+      "manualUrl": "",
+      "tags": [
+        "Distortion",
+        "Physical modeling"
+      ]
     }
   ]
 }

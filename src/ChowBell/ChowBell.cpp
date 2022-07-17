@@ -111,7 +111,7 @@ struct ChowBell : Module {
 struct ChowBellWidget : ModuleWidget {
     ChowBellWidget(ChowBell* module) {
         setModule(module);
-        setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/ChowBell.svg")));
+        setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/DummyPanel.svg")));
 //        createScrews(*this);
 
         addParam(createParamCentered<RoundBlackKnob>(mm2px(Vec(15.0, 26.75)), module, ChowBell::FREQ_PARAM));

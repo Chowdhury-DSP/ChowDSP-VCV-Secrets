@@ -6,7 +6,7 @@ This repository contains some "secret" VCV Rack modules
 from Chowdhury DSP.
 
 - ChowBell: an 808-style cowbell emulation
-- More to come...
+- MetalFace: the most expensive guitar distortion in VCV Rack?
 
 ### Why are these modules "secret"?
 
