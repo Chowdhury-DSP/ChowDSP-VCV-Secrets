@@ -1,8 +1,8 @@
-#include "../plugin.hpp"
-#include "CowbellEnvelope.h"
-
 #include <chowdsp_dsp_utils/chowdsp_dsp_utils.h>
 #include <chowdsp_waveshapers/chowdsp_waveshapers.h>
+
+#include "../plugin.hpp"
+#include "CowbellEnvelope.h"
 
 namespace {
     constexpr float highFreq = 2000.0f;

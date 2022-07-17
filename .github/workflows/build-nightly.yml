@@ -1,0 +1,73 @@
+name: Build VCV Rack Plugin
+
+on:
+  push:
+    branches:
+    - main
+    - develop
+  pull_request:
+    branches:
+    - main
+    - develop
+
+  workflow_dispatch:
+
+env:
+  rack-sdk-version: 2.1.2
+  plugin-version: 2.0.0
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    name: Build plugin on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false # show all errors for each platform (vs. cancel jobs on error)
+      matrix:
+        include:
+          - os: ubuntu-latest
+            platform: lin
+            compiler: cc
+            install-dependencies: |
+              sudo apt-get install -y libglu-dev
+          - os: macos-latest
+            platform: mac
+            compiler: cc
+            install-dependencies: |
+              brew install mesa
+          - os: windows-2019
+            platform: win
+            compiler: gcc
+            install-dependencies: |
+              choco install --no-progress -y zip
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - name: Install Rack SDK
+        run: |
+          curl -o sdk.zip https://vcvrack.com/downloads/Rack-SDK-${{ env.rack-sdk-version }}-${{ matrix.platform }}.zip
+          unzip sdk.zip
+
+      - name: Install Dependencies
+        run: |
+          ${{ matrix.install-dependencies }}
+
+      - name: Build
+        env:
+          RACK_DIR: Rack-SDK
+          CC: ${{ matrix.compiler }}
+        run: |
+          make -j dist
+
+      - name: Upload artifact
+        if: ${{ github.event_name == 'push' }}
+        uses: actions/upload-artifact@v2
+        with:
+          path: dist
+          name: ChowDSP-secrets-${{ env.plugin-version }}-${{ matrix.platform }}.vcvplugin
