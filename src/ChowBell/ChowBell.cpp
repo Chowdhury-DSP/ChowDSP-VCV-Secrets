@@ -2,6 +2,7 @@
 #include "CowbellEnvelope.h"
 
 #include <chowdsp_dsp_utils/chowdsp_dsp_utils.h>
+#include <chowdsp_waveshapers/chowdsp_waveshapers.h>
 
 namespace {
     constexpr float highFreq = 2000.0f;
@@ -43,6 +44,7 @@ struct ChowBell : Module {
 
         onSampleRateChange();
         paramDivider.setDivision(ParamDivide);
+        adaaTanhClipper.prepare (1);
     }
 
     void onSampleRateChange() override {
@@ -75,20 +77,17 @@ struct ChowBell : Module {
 
     void process(const ProcessArgs& args) override
     {
-        // @TODO:
-        // - use lookup tables or approximations for std::exp
-        // - use ADAA waveshaper for tanh
-
         if(paramDivider.process())
             cookParams();
 
         float x = inputs[TRIGGER_INPUT].getVoltage() * 0.1f;
 
         const auto env = envelope.processSample (x);
-        const auto osc1Out = std::exp (osc1.processSample()) * env;
-        const auto osc2Out = std::exp (osc2.processSample()) * env;
+        const auto osc1Out = expLUT (osc1.processSample()) * env;
+        const auto osc2Out = expLUT (osc2.processSample()) * env;
 
-        const auto y = bandpassFilter.processSample (0, std::tanh (osc1Out + osc2Out));
+        auto y = adaaTanhClipper.processSample (osc1Out + osc2Out);
+        y = bandpassFilter.processSample (0, y);
 
         outputs[MAIN_OUTPUT].setVoltage(y * 10.0f);
     }
@@ -101,6 +100,12 @@ struct ChowBell : Module {
     chowdsp::SquareWave<float> osc2;
 
     chowdsp::SVFBandpass<> bandpassFilter;
+
+    chowdsp::LookupTableTransform<float> expLUT { [] (auto x) { return std::exp (x); },
+                                                  -1.1f,
+                                                  1.1f,
+                                                  1 << 12 };
+    chowdsp::ADAATanhClipper<float> adaaTanhClipper;
 };
 
 struct ChowBellWidget : ModuleWidget {

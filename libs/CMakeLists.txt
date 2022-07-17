@@ -4,5 +4,5 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_subdirectory(chowdsp_utils)
 setup_chowdsp_lib(chowdsp
-    MODULES chowdsp_dsp_utils
+    MODULES chowdsp_dsp_utils chowdsp_waveshapers
 )
