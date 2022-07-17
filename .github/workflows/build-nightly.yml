@@ -43,7 +43,6 @@ jobs:
             compiler: gcc
             install-dependencies: |
               choco install --no-progress -y zip
-              choco upgrade --no-progress -y mingw
 
     steps:
       - uses: actions/checkout@v2
