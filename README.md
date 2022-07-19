@@ -8,41 +8,44 @@ from Chowdhury DSP.
 - ChowBell: an 808-style cowbell emulation
 - MetalFace: the most expensive guitar distortion in VCV Rack?
 
+## Building
+
+```bash
+git clone https://github.com/Chowdhury-DSP/ChowDSP-VCV-Secrets
+cd ChowDSP-VCV-Secrets
+git submodule update --init --recursive
+export RACK_DIR=location-of-rack-SDK-or-source
+make -j dist
+```
+
+## About
+
 ### Why are these modules "secret"?
 
 Chowdhury DSP has a set of
 ["non-secret" modules](https://github.com/jatinchowdhury18/ChowDSP-VCV)
 which can be downloaded from the VCV plugin library.
 
-Currently, VCV requires plugins distributed through the official
-VCV plugin library to be compiled with C++11. However, our
-[DSP library](https://github.com/Chowdhury-DSP/chowdsp_utils#dsp-modules)
-currently requires C++17 (or later). So we decided to make
-a set of "secret" modules, which will not be distributed in
-the VCV plugin library (for now).
+These modules were developed as a separate plugin originally
+to avoid a conflict with VCV Rack's C++11 requirement. However,
+as C++11 is no longer a requirement for VCV Rack plugins, we're
+trying to figure out what to do with these modules next...
 
 ### How can I try out the modules?
 
 At the moment this code is in a _very_ early state.
 If you're feeling adventurous, you can try downloading
 the build artifacts from the
-[CI pipeline](https://github.com/Chowdhury-DSP/ChowDSP-VCV-Secrets/actions/workflows/build-nightly.yml), or try to build the modules yourself
-[from the source code](https://vcvrack.com/manual/Building#building-rack-plugins).
-We might do some "tagged" releases in the future,
-but in the meantime, it's probably best to be patient
-and wait for a bit more development to take place.
+[CI pipeline](https://github.com/Chowdhury-DSP/ChowDSP-VCV-Secrets/actions/workflows/build-nightly.yml), or try to build the modules yourself. We might do some
+"tagged" releases in the future, but in the meantime,
+it's probably best to be patient and wait for a bit more
+development to take place.
 
 ### Will these modules ever be available in the official plugin library?
 
-Possibly. VCV has mentioned that a future version of Rack
-might change the C++ version requirement to C++14 or C++17.
-We also may work on getting our DSP library to be compatible
-with C++14 (getting it down to C++11 would be quite tricky).
-If the C++ version compatibility works out such that we
-would be able to distribute these modules to the VCV library,
-then we'll make an effort to do that, either by adding them
-to the existing ChowDSP VCV Rack plugin, or by submitting
-this plugin to the library.
+Possibly. These modules might be integrated into the rest
+of the ChowDSP modules, or they might be released as their
+own plugin.
 
 ### What's up with the panel design?
 
@@ -65,8 +68,6 @@ from our library outside of a JUCE environment which opens up some exciting
 possibilities, including using the library to write DSP code which can run
 on Arduino devices or in VCV modules!
 
-We still have the C++ version issue, which is blocking us from releasing
-these modules to the VCV plugin library, but we didn't feel that should 
-stop us from having fun creating some new modules. And if we can make
-it possible for others out there to enjoy using these modules in the
-meantime, then so much the better!
+## License
+
+ChowDSP Secret VCV Modules (both artwork and code) are licensed under the GPLv3 license. Enjoy!
