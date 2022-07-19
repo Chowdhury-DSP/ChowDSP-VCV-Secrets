@@ -18,5 +18,5 @@ FLAGS += -Ilibs/RTNeural -DRTNEURAL_DEFAULT_ALIGNMENT=16 -DRTNEURAL_USE_XSIMD=1 
 
 $(libchowdsp):
 	echo $(PWD)
-	cd libs && $(CMAKE) -Bbuild-libs
+	cd libs && $(CMAKE) -G"Unix Makefiles" -Bbuild-libs
 	cd libs/build-libs && $(MAKE) all
