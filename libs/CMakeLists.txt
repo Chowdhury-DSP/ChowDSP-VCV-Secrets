@@ -6,3 +6,7 @@ add_subdirectory(chowdsp_utils)
 setup_chowdsp_lib(chowdsp
     MODULES chowdsp_dsp_utils chowdsp_waveshapers
 )
+
+install(TARGETS chowdsp
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)

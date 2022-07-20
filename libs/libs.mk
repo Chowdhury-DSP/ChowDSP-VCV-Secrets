@@ -1,5 +1,5 @@
 # Define the path of the built static library
-libchowdsp := libs/build-libs/libchowdsp.a
+libchowdsp := dep/lib/libchowdsp.a
 
 # Build the static library into your plugin.dll/dylib/so
 OBJECTS += $(libchowdsp)
@@ -18,5 +18,5 @@ FLAGS += -Ilibs/RTNeural -DRTNEURAL_DEFAULT_ALIGNMENT=16 -DRTNEURAL_USE_XSIMD=1 
 
 $(libchowdsp):
 	echo $(PWD)
-	cd libs && $(CMAKE) -G"Unix Makefiles" -Bbuild-libs
-	cd libs/build-libs && $(MAKE) all
+	cd libs && $(CMAKE) -G"Unix Makefiles" -B../dep/build-chowdsp
+	cd dep/build-chowdsp && $(MAKE) install

@@ -6,4 +6,5 @@
 .DS_Store
 /.idea
 /.vscode
-/libs/build-libs
+/dep/build*
+/dep/lib
